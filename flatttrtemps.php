@@ -11,23 +11,40 @@ class FlatttrTemps{
 	public function showImage($imagePath){
 
 		$imageFullPath = $this->getImageFullPath($imagePath);
+		$imageDataFullPath = $this->getImageFullPath(substr($imagePath, 0, strrpos($imagePath, '.')).'.php');
 
 		if(file_exists($imageFullPath) && is_file($imageFullPath)){
 			$imageURL = $this->config['projectURI'].$this->config['dataPath'].'/'.$imagePath;
-
-			if(strpos($imagePath, '/') !== false)
-				$imageName = str_replace('ـ', ' ', str_replace('_', ' ', str_replace('-', ' ', trim(strrchr(urldecode($imagePath), '/'), '/'))));
-			else
-				$imageName = urldecode($imagePath);
-			
-			$imageName = substr($imageName, 0, strrpos($imageName, '.'));
+			$imageData = null;
+			if(file_exists($imageDataFullPath) && is_file($imageDataFullPath)){
+				
+				$imageData = $imageDataFullPath;
+			}
+			$imageName = '';
+			if(is_array($imageData) && array_key_exists($imageData, 'title')){
+				$imageName = $imageData['title'];
+			}else{
+				if(strpos($imagePath, '/') !== false)
+					$imageName = str_replace('ـ', ' ', str_replace('_', ' ', str_replace('-', ' ', trim(strrchr(urldecode($imagePath), '/'), '/'))));
+				else
+					$imageName = urldecode($imagePath);
+				$imageName = substr($imageName, 0, strrpos($imageName, '.'));
+			}
 
 			$this->renderHeader($imageName);
 			$this->renderBreadcrumb($imagePath);
 
 			echo '<div class="col-md-12"><img width="100%" src="'.$imageURL.'"></div>';
-			echo '<div class="col-md-12"><a href="'.$imageURL.'"><h2><span class="label label-success">تحميل</span></h2></a></div>';
-
+			echo '<div class="col-md-12 col-xs-12">';
+			echo '<div class="panel panel-default">';
+			echo '<div class="panel-heading">';
+			echo '<h3 class="panel-title">'.$imageName.'</h3></div>';
+			if(is_array($imageData)){
+				if(array_key_exists($imageData, 'description')){
+					echo '<div class="panel-body">'.$imageData['description'].'</div></div>';
+				}
+			}
+			echo '<div class="col-md-12 col-xs-12"><a href="'.$imageURL.'"><h2><span class="label label-success">تحميل</span></h2></a></div>';
 			$this->renderFooter('شكراً على زيارتكم');
 
 		}else{
