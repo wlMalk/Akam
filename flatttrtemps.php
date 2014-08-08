@@ -60,7 +60,7 @@ class FlatttrTemps{
 			$categoryContent = $this->getCategoryContent($categoryPath, $categoryFullPath);
 
 			if(empty($categoryPath)){ //if index
-				$this->renderHeader("الرئيسية");
+				$this->renderHeader("عالم أنس");
 				$this->renderBreadcrumb($categoryPath);
 				$this->renderIndexBox('أهلاً بكم!', 'اتمنى أن تستمتعوا بصوري');
 				$this->renderCategory('', $categoryContent);
