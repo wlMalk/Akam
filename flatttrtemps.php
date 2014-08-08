@@ -18,7 +18,7 @@ class FlatttrTemps{
 			$imageData = null;
 			if(file_exists($imageDataFullPath) && is_file($imageDataFullPath)){
 				
-				$imageData = $imageDataFullPath;
+				$imageData = include $imageDataFullPath;
 			}
 			$imageName = '';
 			if(is_array($imageData) && array_key_exists($imageData, 'title')){
