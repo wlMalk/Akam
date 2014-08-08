@@ -103,7 +103,7 @@ class FlatttrTemps{
 		echo "<title>$title</title>";
 		echo '</head><body>';
 		echo '<div class="page-header container">';
-		echo '<div class="page-header"><a href="'.$this->config['projectURI'].'"><h1><span class="label label-primary">عالم أنس</span></h1></a></div>';
+		echo '<div class="page-header"><a href="'.$this->config['projectURI'].'/'.'"><h1><span class="label label-primary">عالم أنس</span></h1></a></div>';
 
 	}
 
@@ -134,7 +134,7 @@ class FlatttrTemps{
 	private function renderBreadcrumb($path){
 		echo '<ol class="breadcrumb">';
 		$path = trim(urldecode($path), '/');
-		$urls = $this->config['projectURI'];
+		$urls = $this->config['projectURI'].'/';
 		if(empty($path))// if index
 			echo '<li><a class="home active" href="'.$urls.'">الرئيسية</a></li>';
 		else{
@@ -143,7 +143,7 @@ class FlatttrTemps{
 			$counter = 0;
 			$len = count($path);
 			foreach ($path as $item) {
-				$urls .= '/'.$item;
+				$urls .= $item.'/';
 				$item = str_replace('ـ', ' ', str_replace('_', ' ', str_replace('-', ' ', $item)));
 				if ($counter == $len-1){
 					if(strpos($item, '.') !== false)
