@@ -112,7 +112,7 @@ class FlatttrTemps{
 		echo '<h3>الصور</h3>';
 		if(!empty($categoryContent[1])){
 			foreach($categoryContent[1] as $image) {
-				echo '<div style="float:right;" class="col-xs-6 col-md-4"><a class="thumbnail" href="'.$this->config['projectURI'].'/'.$categoryPath.$image.'"><img src="'.$this->config['projectURI'].'/'.$this->config['dataPath'].'/'.$categoryPath.$image.'"></a></div>';
+				echo '<div style="float:right;" class="col-xs-6 col-md-4"><a class="thumbnail" href="'.$this->config['projectURI'].'/'.$categoryPath.$image.'"><img src="'.$this->config['projectURI'].$this->config['dataPath'].'/'.$categoryPath.$image.'"></a></div>';
 			}
 		}else{
 			echo 'لا يوجد صور';
