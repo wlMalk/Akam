@@ -11,7 +11,7 @@ class Router{
 
 	public function route(){
 
-		$this->requestURI = trim(substr($this->requestURI, strlen($this->config['projectPath'].$this->config['publicPath'])), '/');
+		$this->requestURI = trim(substr($this->requestURI, strlen($this->config['projectURI'])), '/');
 		$path = explode('/', $this->requestURI);
 		$type = '';
 
