@@ -21,13 +21,14 @@ class FlatttrTemps{
 				$imageData = include $imageDataFullPath;
 			}
 			$imageName = '';
-			if(is_array($imageData) && array_key_exists($imageData, 'title')){
+			if(is_array($imageData) && array_key_exists('title', $imageData)){
 				$imageName = $imageData['title'];
 			}else{
 				if(strpos($imagePath, '/') !== false)
 					$imageName = str_replace('ـ', ' ', str_replace('_', ' ', str_replace('-', ' ', trim(strrchr(urldecode($imagePath), '/'), '/'))));
 				else
 					$imageName = urldecode($imagePath);
+				
 				$imageName = substr($imageName, 0, strrpos($imageName, '.'));
 			}
 
@@ -40,11 +41,11 @@ class FlatttrTemps{
 			echo '<div class="panel-heading">';
 			echo '<h3 class="panel-title">'.$imageName.'</h3></div>';
 			if(is_array($imageData)){
-				if(array_key_exists($imageData, 'description')){
-					echo '<div class="panel-body">'.$imageData['description'].'</div></div>';
+				if(array_key_exists('description', $imageData)){
+					echo '<div class="panel-body">'.$imageData['description'].'</div>';
 				}
 			}
-			echo '<div class="col-md-12 col-xs-12"><a href="'.$imageURL.'"><h2><span class="label label-success">تحميل</span></h2></a></div>';
+			echo '</div></div><div class="col-md-12 col-xs-12"><a href="'.$imageURL.'"><h2><span class="label label-success">تحميل</span></h2></a></div>';
 			$this->renderFooter('شكراً على زيارتكم');
 
 		}else{
