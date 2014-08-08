@@ -1,7 +1,7 @@
 <?php
 return array(
-  'projectURI' => '/flatttr/public',
-  'projectPath' => '/flatttr',
+  'projectURI' => '',
+  'projectPath' => '',
   'publicPath' => '/public',
   'assetsPath' => '/assets',
   'dataPath' => '/data',
